@@ -1,10 +1,16 @@
-# Brunch + React + Babel/ES6
+# Weather Chart
 
-This is a modern JS skeleton with React for [Brunch](http://brunch.io).
+This is a weather-comparison chart built with Chart.js, React, and Brunch.
 
 ## Installation
 
-Clone this repo manually or use `brunch new dir -s brunch/with-react`
+Clone this repo manually or install it with ``` git clone git@github.com:angamaiton/interview-chart.git ```.
+
+```js
+npm install
+brunch build
+brunch watch --server
+```
 
 ## Getting started
 
