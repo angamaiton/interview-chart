@@ -2,6 +2,7 @@ import React from 'react';
 import Chart from 'chart.js';
 
 import tempDataHigh from '../data/temp_data_high.json';
+import tempDataLow from '../data/temp_data_low.json';
 
 export default class MyChart extends React.Component {
   constructor(props) {
@@ -9,30 +10,43 @@ export default class MyChart extends React.Component {
   }
   render() {
     const ctx = document.getElementById("myChart");
-    let data = tempDataHigh.result.site.weather;
-    const label = tempDataHigh.result.site.name;
-    let dates = data.map((datum) => {
+    let highData = tempDataHigh.result.site.weather;
+    let lowData = tempDataLow.result.site.weather;
+    const highLabel = tempDataHigh.result.site.name;
+    const lowLabel = tempDataLow.result.site.name;
+    let highDates = highData.map((datum) => {
       return datum.date;
     });
-    let oldData = data.map((datum) => {
+    let highTempData = highData.map((datum) => {
       return datum.high_temp;
     });
-    console.log(oldData);
+    let lowTempData = lowData.map((datum) => {
+      return datum.low_temp;
+    });
+    let lowDates = lowData.map((datum) => {
+      return datum.date;
+    });
     let myChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: dates,
+        labels: highDates,
         datasets: [{
-          label: label,
+          label: 'Highs',
           fill: false,
           borderColor: "rgba(75,192,192,1)",
-          data: oldData
+          data: highTempData
+        }, {
+          label: 'Lows',
+          fill: false,
+          borderColor: "red",
+          data: lowTempData
         }]
       },
       options: {
+        responsive: false,
         title: {
           display: true,
-          text: "Weather Data"
+          text: "Weather Data",
         }
       }
     });
