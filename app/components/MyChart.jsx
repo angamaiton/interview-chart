@@ -12,8 +12,8 @@ export default class MyChart extends React.Component {
     const ctx = document.getElementById("myChart");
     let highData = tempDataHigh.result.site.weather;
     let lowData = tempDataLow.result.site.weather;
-    const highLabel = tempDataHigh.result.site.name;
-    const lowLabel = tempDataLow.result.site.name;
+    // const highLabel = tempDataHigh.result.site.name;
+    // const lowLabel = tempDataLow.result.site.name;
     let highDates = highData.map((datum) => {
       return datum.date;
     });
@@ -31,21 +31,33 @@ export default class MyChart extends React.Component {
       data: {
         labels: highDates,
         datasets: [{
-          label: 'Highs',
+          label: 'High Temps',
           fill: false,
-          borderColor: "rgba(75,192,192,1)",
+          borderColor: "rgba(192,75,75,1)",
           data: highTempData
         }, {
-          label: 'Lows',
+          label: 'Low Temps',
           fill: false,
-          borderColor: "red",
+          borderColor: "rgba(75,192,192,1)",
           data: lowTempData
         }]
       },
       options: {
+        legend: {
+          position: 'right',
+        },
         responsive: false,
+        scales: {
+          xAxes: [{
+            type: 'time',
+            displayFormats: {
+              month: 'MMM YYYY'
+            }
+          }]
+        },
         title: {
           display: true,
+          fontFamily: "BlinkMacSystemFont, -apple-system, 'Segoe UI'",
           text: "Weather Data",
         }
       }
