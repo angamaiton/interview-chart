@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MyChart from './MyChart.jsx';
+import MyChart from './MyChart';
 
 export default class App extends React.Component {
   render() {
